@@ -4,8 +4,6 @@
 
 This cronjob runs a bash script with a loop in a list of deployment names.
 
-Each deployment is scaled based on type. 
-
 Useful for scaling down the environment outside business hours and scaling up again.
 
 
