@@ -1,0 +1,21 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: podscaleup
+spec:
+  schedule: "10 02 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: podscaleup
+            image: brunoguidone/cronjobScaleUpDown
+            envFrom:
+            - secretRef:
+                name: scaleupdown-credential-kubeconfig
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/bash
+            - scaleup.sh
+          restartPolicy: OnFailure
